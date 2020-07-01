@@ -27,6 +27,7 @@ typedef struct _StackType StackType;
 int main(void) {
   char *buf;
   buf = malloc(5152);
+  OnigUChar *x;
   if(buf) {
     (*((long long *)(buf + 8))) = &("\000G\000o\000O\000o\000O\000g\000L\000e\000\000")[2];
     (*((long long *)(buf + 24))) = &("\000G\000o\000O\000o\000O\000g\000L\000e\000\000")[10];
@@ -34,7 +35,7 @@ int main(void) {
     StackType* stk_base = (StackType*)&buf[32];
     StackIndex* mem_start_stk = (StackIndex*)&buf[0];
     int i = 1;
-    int x = stk_base + *(mem_start_stk + i);
+    x = (stk_base + *(mem_start_stk + i))->u.mem.pstr;
     return x;
   }
   return 0;

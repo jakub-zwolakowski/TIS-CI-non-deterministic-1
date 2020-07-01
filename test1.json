@@ -7,7 +7,7 @@
     "reason": "stop at nth alarm",
     "program_point": {
       "file": "test.c",
-      "line": 37,
+      "line": 38,
       "function": "main",
       "statement_kind": "instruction"
     }
@@ -25,7 +25,7 @@
         "status": "unknown",
         "program_point": {
           "file": "test.c",
-          "line": 37,
+          "line": 38,
           "function": "main",
           "statement_kind": "instruction"
         },
@@ -62,7 +62,7 @@
     "total_statements_coverage": "69%",
     "semantic_statements_coverage": "69%"
   },
-  "precision": { "type": "informative", "status": "OK", "max_slevel": 1 },
+  "precision": { "type": "informative", "status": "OK", "max_slevel": 2 },
   "target": {
     "type": "informative",
     "entry_point": "main",
