@@ -4,51 +4,63 @@
   "degeneration": {
     "type": "error",
     "status": "NOT OK",
-    "reason": "interpreter not a singleton",
-    "expression": "*(mem_start_stk + i)",
-    "imprecision": [
-      {
-        "imprecise_pointed_value": {
-          "pointer": "mem_start_stk + i",
-          "pointer_type": "StackIndex *",
-          "pointer_value": "{{ (StackIndex *)&buf[4] }}"
-        }
-      }
-    ],
+    "reason": "stop at nth alarm",
     "program_point": {
       "file": "test.c",
-      "line": 21,
+      "line": 37,
       "function": "main",
       "statement_kind": "instruction"
     }
   },
   "non_terminating": { "type": "to verify", "status": "OK" },
-  "messages": {
-    "type": "to verify",
+  "messages": { "type": "to verify", "status": "OK" },
+  "alarms": {
+    "type": "error",
     "status": "NOT OK",
     "list": [
       {
-        "location": { "file": "test.c", "line": 21 },
-        "plugin": "value",
-        "kind": "warning",
-        "message":
-          "The following sub-expression cannot be evaluated:\\n*(mem_start_stk + i)\\n\\nAll sub-expressions with their values:\\nStackIndex *  mem_start_stk + i \\342\\210\\210 {{ (StackIndex *)&buf[4] }}\\nStackIndex *  mem_start_stk \\342\\210\\210 {{ (StackIndex *)&buf }}\\nint  i \\342\\210\\210 {1}\\nStackIndex  *(mem_start_stk + i) \\342\\210\\210 {{ garbled mix of &{t}\\n                                     (origin: Misaligned {test.c:21}) }}\\n\\nStopping\\nstack: main"
+        "kind": "pointer arithmetic",
+        "predicate": "\\inside_object((void *)(stk_base+*(mem_start_stk+i)))",
+        "rank": 1,
+        "status": "unknown",
+        "program_point": {
+          "file": "test.c",
+          "line": 37,
+          "function": "main",
+          "statement_kind": "instruction"
+        },
+        "values": [
+          { "lvalue": "i", "values": "{1}" },
+          { "lvalue": "mem_start_stk", "values": "{{ &__malloc_main_l29 }}" },
+          {
+            "lvalue": "stk_base",
+            "values": "{{ &__malloc_main_l29 + {32} }}"
+          },
+          {
+            "lvalue": "*(mem_start_stk + i)",
+            "values":
+              "{{ \"\\000G\\000o\\000O\\000o\\000O\\000g\\000L\\000e\\000\\000\" + {2} }}"
+          }
+        ]
       }
     ]
   },
-  "alarms": { "type": "error", "status": "OK" },
   "hypotheses": { "type": "to verify", "status": "OK" },
   "no_body_but_spec": { "type": "to verify", "status": "OK" },
   "body_but_use_spec": { "type": "informative", "status": "OK" },
   "external_variables": { "type": "informative", "status": "OK" },
   "assembly": { "type": "informative", "status": "OK" },
-  "builtins": { "type": "informative", "status": "OK" },
+  "builtins": {
+    "type": "informative",
+    "status": "NOT OK",
+    "list": [ "malloc" ]
+  },
   "useless_files": { "type": "to verify", "status": "OK" },
   "coverage": {
     "type": "informative",
     "function_coverage": "100%",
-    "total_statements_coverage": "83%",
-    "semantic_statements_coverage": "83%"
+    "total_statements_coverage": "69%",
+    "semantic_statements_coverage": "69%"
   },
   "precision": { "type": "informative", "status": "OK", "max_slevel": 1 },
   "target": {
