@@ -7,7 +7,7 @@
     "reason": "stop at nth alarm",
     "program_point": {
       "file": "test.c",
-      "line": 38,
+      "line": 212,
       "function": "main",
       "statement_kind": "instruction"
     }
@@ -25,21 +25,23 @@
         "status": "unknown",
         "program_point": {
           "file": "test.c",
-          "line": 38,
+          "line": 212,
           "function": "main",
           "statement_kind": "instruction"
         },
         "values": [
           { "lvalue": "i", "values": "{1}" },
-          { "lvalue": "mem_start_stk", "values": "{{ &__malloc_main_l29 }}" },
+          {
+            "lvalue": "mem_start_stk",
+            "values": "{{ &__malloc_main_l200 }}"
+          },
           {
             "lvalue": "stk_base",
-            "values": "{{ &__malloc_main_l29 + {32} }}"
+            "values": "{{ &__malloc_main_l200 + {32} }}"
           },
           {
             "lvalue": "*(mem_start_stk + i)",
-            "values":
-              "{{ \"\\000G\\000o\\000O\\000o\\000O\\000g\\000L\\000e\\000\\000\" + {2} }}"
+            "values": "{{ \"GoOoOgLe\" + {1} }}"
           }
         ]
       }
@@ -53,16 +55,16 @@
   "builtins": {
     "type": "informative",
     "status": "NOT OK",
-    "list": [ "malloc" ]
+    "list": [ "malloc", "tis_dump_each" ]
   },
   "useless_files": { "type": "to verify", "status": "OK" },
   "coverage": {
     "type": "informative",
     "function_coverage": "100%",
-    "total_statements_coverage": "69%",
-    "semantic_statements_coverage": "69%"
+    "total_statements_coverage": "73%",
+    "semantic_statements_coverage": "73%"
   },
-  "precision": { "type": "informative", "status": "OK", "max_slevel": 2 },
+  "precision": { "type": "informative", "status": "OK", "max_slevel": 1 },
   "target": {
     "type": "informative",
     "entry_point": "main",
