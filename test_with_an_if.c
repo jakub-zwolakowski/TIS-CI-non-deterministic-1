@@ -206,7 +206,8 @@ int main(void) {
     StackType* stk_base = (StackType*)&buf[32];
     StackIndex* mem_start_stk = (StackIndex*)&buf[0];
     int i = 1;
-    x = (stk_base + *(mem_start_stk + i))->u.mem.pstr;
+    int false_condition = 0;
+    x = false_condition ? (stk_base + *(mem_start_stk + i))->u.mem.pstr : 42;
     return x;
   }
   return 0;
